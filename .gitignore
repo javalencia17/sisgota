@@ -1,0 +1,16 @@
+# Ignore built ts files
+dist/**/*
+dist/*
+
+
+# ignore yarn.lock
+yarn.lock
+
+# ignore ormconfig
+node_modules
+
+
+# ignore ormconfig
+ormconfig.json
+
+
