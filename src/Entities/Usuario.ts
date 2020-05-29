@@ -1,10 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, JoinColumn, BaseEntity } from 'typeorm';
 import { Rol } from './Rol';
 import { Entidad } from './Entidad';
 
 
 @Entity('usuarios')
-export class Usuario {
+export class Usuario  extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     idUsuario: number;
@@ -40,16 +40,4 @@ export class Usuario {
     @OneToOne(type => Entidad)
     @JoinColumn()
     entidades_: number;
-
-   
-
-
-    
-
-
-
-
-
-
-
 }

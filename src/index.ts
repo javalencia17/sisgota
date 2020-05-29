@@ -1,11 +1,12 @@
-import express from 'express';
-import { createConnection } from 'typeorm';
+import "reflect-metadata";
+import { startServer } from './app';
+require('dotenv').config();
+const PORT = process.env.PORT
 
+const main = async () => {
+    const app = await startServer();
+    app.listen(PORT);
+    console.log(`🚀 Server ready at http://localhost:${PORT}`)
+}
 
-const app = express();
-createConnection();
-
-app.listen(3000, () => {
-    console.log(`Corriendo en el puerto 3000`)
-})
-
+main();
