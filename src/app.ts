@@ -1,9 +1,10 @@
+import { EntidadResolver } from './Resolvers/EntidadResolver';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { PingResolver } from './Resolvers/ping';
 import { buildSchema } from 'type-graphql';
 import { UsuarioResolver } from './Resolvers/UsuarioResolver';
 import { createConnection } from 'typeorm';
+import { RolResolver } from './Resolvers/RolResolver';
 
 
 export const startServer = async () => {
@@ -13,7 +14,7 @@ export const startServer = async () => {
 
     const server = new ApolloServer({
         schema: await buildSchema({
-            resolvers: [PingResolver, UsuarioResolver]
+            resolvers: [UsuarioResolver, RolResolver, EntidadResolver]
         }),
         context: ({ req, res }) => ({ req, res })
     })

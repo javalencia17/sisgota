@@ -1,19 +1,29 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToOne} from 'typeorm';
+import { ObjectType, Field } from 'type-graphql';
 
+@ObjectType()
 @Entity('roles')
-export class Rol {
+export class Rol extends BaseEntity {
 
+    @Field()
     @PrimaryGeneratedColumn()
     idRol: number;
 
+    @Field(type => String)
     @Column({
         type: 'varchar',
         length: 100,
-        nullable: false
     })
     nombreRol: string
 
-    @CreateDateColumn()
+    @Field(type => String)
+    @Column({
+        default: () => 'CURRENT_TIMESTAMP',
+        type: 'timestamp',
+    })
     created_at: Date;
+
+  
+
 
 }

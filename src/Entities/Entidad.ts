@@ -1,19 +1,26 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import { ObjectType, Field, Int } from 'type-graphql';
 
+@ObjectType()
 @Entity('entidades')
-export class Entidad {
+export class Entidad extends BaseEntity {
 
+    @Field()
     @PrimaryGeneratedColumn()
     idEntidad: number;
 
+    @Field(type => String)
     @Column()
     nombreEntidad: string;
 
-    @Column({
-        type: 'tinyint'
-    })
-    activo: number;
+    @Field(type => Boolean)
+    @Column({default: true})
+    activo: boolean;
 
-    @CreateDateColumn()
+    @Field()
+    @Column({
+        default: () => 'CURRENT_TIMESTAMP',
+        type: 'timestamp',
+    })
     create_at: Date
 }
